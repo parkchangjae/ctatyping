@@ -6,130 +6,188 @@
 <meta name="robots" content="noindex, nofollow">
 <title>세무사 세법·상법·재정학 암기 타자</title>
 <style>
-:root{--bg:#f4f5f1;--card:#fff;--ink:#1b2430;--mute:#66717e;--line:#d7dbd3;--ok:#1d7a4b;--bad:#c0392b;--acc:#27408b;--hi:#e6ecfb}
-@media (prefers-color-scheme:dark){:root{--bg:#12161c;--card:#1a212a;--ink:#e8ecf1;--mute:#93a0ae;--line:#2d3745;--ok:#5fcf9a;--bad:#ff7b6b;--acc:#93aaff;--hi:#222c4a}}
+:root{--bg:#f8f9fa;--card:#ffffff;--tonal:#e8f0fe;--tonal-ink:#1967d2;--surf:#f0f4f9;--ink:#1f1f1f;--mute:#5f6368;--line:#dadce0;--ok:#137333;--bad:#c5221f;--acc:#1a73e8;--hi:#e8f0fe}
+@media (prefers-color-scheme:dark){:root{--bg:#131314;--card:#1e1f20;--tonal:#1f2a3c;--tonal-ink:#8ab4f8;--surf:#282a2c;--ink:#e3e3e3;--mute:#9aa0a6;--line:#3c4043;--ok:#81c995;--bad:#f28b82;--acc:#8ab4f8;--hi:#1f2a3c}}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 -apple-system,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom)}
-main{max-width:760px;margin:0 auto;padding:14px}
-h1{font-size:18px;margin:4px 0 10px}
-.bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+html{scroll-behavior:smooth}
+html,body{overflow-x:hidden;-webkit-overflow-scrolling:touch}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 -apple-system,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;word-break:keep-all;overflow-wrap:break-word;transition:background .6s;padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom)}
+body.t1{--bg:#f0f4f9}body.t2{--bg:#f5f3ef}body.t3{--bg:#eff5f1}
+@media (prefers-color-scheme:dark){body.t1{--bg:#141820}body.t2{--bg:#1c1a17}body.t3{--bg:#141d17}}
+.serif{font-family:"Noto Serif KR","AppleMyungjo",serif}
+.view-hidden{display:none!important}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.step{opacity:1;transform:none;transition:none}.caret{animation:none}}
+
+/* ---------- Google Material 3 Landing ---------- */
+#landing-view{padding-bottom:80px}
+.sec{min-height:100svh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;max-width:780px;margin:0 auto;padding:max(32px,env(safe-area-inset-top)) 24px 32px}
+#hero{padding-top:32px;padding-bottom:32px}
+.g-badge{display:inline-flex;align-items:center;padding:6px 14px;border-radius:999px;background:var(--tonal);color:var(--tonal-ink);font-size:12.5px;font-weight:700;letter-spacing:.02em;margin-bottom:22px}
+#hero h2{font:700 clamp(38px,6vw,56px)/1.12 "Noto Serif KR","AppleMyungjo",serif;letter-spacing:-.03em;margin:0 0 10px;white-space:nowrap;will-change:transform,opacity}
+#hero .type{font:16.5px/1.5 -apple-system,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;color:var(--mute);min-height:1.6em;margin-bottom:28px;white-space:nowrap}
+.caret{display:inline-block;width:2px;height:1.05em;background:var(--acc);vertical-align:-3px;margin-left:2px;animation:bl 1s steps(1) infinite}
+@keyframes bl{50%{opacity:0}}
+
+.qs-panel{width:100%;max-width:540px;margin:0 auto;background:var(--card);border:1px solid var(--line);border-radius:24px;padding:22px;box-shadow:0 4px 24px rgba(0,0,0,.05);display:flex;flex-direction:column;gap:14px}
+.qs-modes{display:grid;grid-template-columns:1fr 1fr;gap:4px;padding:4px;background:var(--surf);border-radius:999px;border:1px solid var(--line)}
+.qs-mbtn{height:44px;display:flex;align-items:center;justify-content:center;gap:6px;padding:0 14px;border-radius:999px;border:none;background:transparent;color:var(--mute);cursor:pointer;transition:.15s;white-space:nowrap}
+.qs-mbtn b{font-size:14px;font-weight:700}
+.qs-mbtn span{font-size:12px;opacity:.85}
+.qs-mbtn.on{background:var(--acc);color:#fff;box-shadow:0 2px 8px rgba(26,115,232,.25)}
+.qs-mbtn.on span{color:rgba(255,255,255,.9)}
+@media (max-width:480px){.qs-mbtn span{display:none}}
+
+.qs-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.qs-go,.qs-shuf{height:48px;padding:0 16px;border-radius:999px;font-size:14px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:7px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;transition:.15s}
+.qs-go{border:none;background:var(--acc);color:#fff}
+.qs-go:hover{filter:brightness(1.06)}
+.qs-shuf{border:none;background:var(--tonal);color:var(--tonal-ink)}
+.qs-shuf:hover{filter:brightness(.97)}
+.qs-shuf svg{width:17px;height:17px;flex-shrink:0}
+
+.qs-chips{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
+@media (max-width:540px){.qs-chips{grid-template-columns:repeat(2,1fr)}.qs-actions{grid-template-columns:1fr}}
+.qs-chip{height:36px;padding:0 8px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--ink);font-size:12.5px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;transition:.15s}
+.qs-chip:hover{border-color:var(--acc);background:var(--tonal);color:var(--tonal-ink)}
+.qs-more{margin-top:14px;font-size:13px;color:var(--mute);cursor:pointer;background:none;border:none;text-decoration:none;align-self:center;padding:6px 12px;border-radius:999px}
+.qs-more:hover{background:var(--surf);color:var(--ink)}
+
+.step{width:100%;max-width:540px;margin:0 auto;text-align:center;opacity:0;transform:translateY(24px);transition:opacity .7s,transform .7s}
+.step.in{opacity:1;transform:none}
+.step h3,.sec>h3{font:700 clamp(30px,6vw,48px)/1.2 "Noto Serif KR","AppleMyungjo",serif;letter-spacing:-.03em;margin:0 0 14px;text-wrap:balance}
+.step p{color:var(--mute);font-size:17px;line-height:1.7;max-width:32em;margin:0 auto;text-wrap:balance}
+
+#links.sec{min-height:auto;justify-content:flex-start;padding-top:48px;padding-bottom:180px}
+#links>h3{margin-bottom:22px}
+.links{width:100%;max-width:680px;margin:0 auto;display:grid;gap:12px;text-align:left}
+.grp-title{font-size:13px;font-weight:700;color:var(--mute);margin:18px 0 6px;letter-spacing:.02em;padding-left:4px}
+.subj-wrap{display:flex;flex-direction:column;gap:10px}
+.lk{display:flex;justify-content:space-between;align-items:center;width:100%;min-height:68px;text-align:left;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px 18px;font-size:17px;font-weight:700;cursor:pointer;transition:.15s}
+.lk:hover{border-color:var(--acc);box-shadow:0 2px 10px rgba(0,0,0,.04)}
+.lk small{display:block;font-weight:400;color:var(--mute);font-size:13px;margin-top:2px}
+.lk .pct{font-size:19px;font-weight:700;color:var(--ok);font-variant-numeric:tabular-nums;margin-left:12px;flex-shrink:0}
+.lk.open{border-color:var(--acc);background:var(--tonal)}
+.links-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px}
+.lk.sm{min-height:54px;padding:11px 14px;font-size:14px;border-radius:12px}
+.lk.sm .pct{font-size:14.5px}
+.chap-drawer{display:none;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px;margin-top:-2px;margin-bottom:6px}
+.chap-drawer.open{display:block}
+.chap-drawer-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;gap:8px;flex-wrap:wrap}
+.chap-drawer-title{font-size:13px;font-weight:700;color:var(--mute)}
+.chap-all-btn{background:var(--acc);color:#fff;border:none;border-radius:999px;padding:7px 14px;font-size:12.5px;font-weight:600;cursor:pointer;white-space:nowrap}
+
+/* ---------- Google Docs Focus Trainer View ---------- */
+main#trainer-view{max-width:780px;margin:0 auto;padding:18px 20px 80px}
+.tr-top{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:12px;margin-bottom:0}
+@media (max-width:540px){.tr-top{grid-template-columns:auto 1fr;gap:8px}.tr-scope{display:none}}
+.back-btn{display:inline-flex;align-items:center;gap:4px;height:36px;padding:0 12px;background:transparent;border:none;border-radius:999px;font-size:13.5px;font-weight:600;color:var(--mute);cursor:pointer;white-space:nowrap}
+.back-btn:hover{background:var(--surf);color:var(--ink)}
+.tr-scope{justify-self:center;display:inline-flex;align-items:center;height:34px;padding:0 14px;border-radius:999px;border:1px solid var(--line);background:var(--card);font-size:13px;font-weight:600;color:var(--ink);max-width:280px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tr-right{display:flex;align-items:center;gap:8px;justify-self:end}
+.vtabs{display:inline-flex;gap:2px;padding:3px;background:var(--card);border:1px solid var(--line);border-radius:999px;height:36px;align-items:center}
+.vtabs button{height:28px;border:none;background:transparent;padding:0 13px;border-radius:999px;font-size:13px;font-weight:700;color:var(--mute);cursor:pointer;white-space:nowrap}
+.vtabs button.on{background:var(--acc);color:#fff}
+.gear-btn{width:36px;height:36px;padding:0;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--mute);display:inline-flex;align-items:center;justify-content:center;cursor:pointer}
+.gear-btn:hover,.gear-btn.on{border-color:var(--acc);color:var(--acc);background:var(--tonal)}
+.gear-btn svg{width:18px;height:18px}
+
 select,button,textarea,input{font:inherit;color:var(--ink)}
-select,button{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:8px 10px}
+select,button{background:var(--card);border:1px solid var(--line);border-radius:10px}
 button.p{background:var(--acc);color:#fff;border-color:var(--acc)}
-.stat{display:flex;gap:14px;flex-wrap:wrap;color:var(--mute);font-size:14px;margin:6px 0 12px}
-.stat b{color:var(--ink)}
-.meter{height:6px;background:var(--line);border-radius:3px;overflow:hidden;margin-bottom:12px}
-.meter i{display:block;height:100%;background:var(--ok);width:0}
-.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px}
-.ref{color:var(--mute);font-size:13px;margin-bottom:8px}
-#tgt{font:22px/1.8 "Noto Serif KR","AppleMyungjo",serif;word-break:keep-all;min-height:80px}
+
+.bar{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:12px;padding:12px;background:var(--card);border:1px solid var(--line);border-radius:16px}
+@media (max-width:700px){.bar{grid-template-columns:repeat(2,1fr)}}
+.bar.collapsed{display:none!important}
+.bar select{width:100%;height:38px;padding:0 10px;font-size:13px;font-weight:600;border-radius:10px;background:var(--surf);border-color:transparent;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+.stat{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;color:var(--mute);font-size:12.5px;margin:0 0 8px;padding:0 4px}
+.stat b{color:var(--ink);font-variant-numeric:tabular-nums}
+.meter{height:4px;background:var(--line);border-radius:999px;overflow:hidden;margin-bottom:16px}
+.meter i{display:block;height:100%;background:var(--ok);width:0;transition:width .25s}
+
+.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:24px 26px;box-shadow:0 2px 16px rgba(0,0,0,.04)}
+.ref-row{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:10px}
+.ref{color:var(--mute);font-size:13px;font-weight:600}
+.idx-badge{font-size:12px;color:var(--mute);font-variant-numeric:tabular-nums;white-space:nowrap}
+.ref-pill{display:inline-block;font-size:11px;padding:2px 8px;border-radius:999px;background:var(--tonal);color:var(--tonal-ink);font-weight:600;margin-left:6px}
+#tgt{font:21px/1.8 "Noto Serif KR","AppleMyungjo",serif;word-break:keep-all;min-height:80px}
 #tgt .ok{color:var(--ok)}
 #tgt .bad{color:var(--bad);text-decoration:underline}
 #tgt .cur{color:var(--acc)}
-#tgt .at{background:var(--hi);border-radius:3px}
-#inp{width:100%;min-height:96px;margin-top:10px;border:1px solid var(--line);border-radius:8px;background:var(--bg);padding:10px;font-size:20px;line-height:1.5;outline:none;white-space:pre-wrap;word-break:keep-all}
-#inp:focus{border-color:var(--acc);box-shadow:0 0 0 2px rgba(39,64,139,.15)}
+#tgt .at{background:var(--tonal);border-radius:4px}
+#inp{width:100%;min-height:96px;margin-top:14px;border:1px solid var(--line);border-radius:14px;background:var(--surf);padding:13px 15px;font-size:19px;line-height:1.55;outline:none;white-space:pre-wrap;word-break:keep-all}
+#inp:focus{background:var(--card);border-color:var(--acc);box-shadow:0 0 0 2px rgba(26,115,232,.18)}
 #inp:empty:before{content:attr(data-placeholder);color:var(--mute);pointer-events:none}
 #inp[contenteditable="false"]{opacity:.7;pointer-events:none}
-.live{display:flex;gap:16px;color:var(--mute);font-size:14px;margin-top:8px}
-#res{margin-top:12px;padding:12px;border-radius:8px;background:var(--hi);display:none}
-#res .row{display:flex;gap:8px;margin-top:10px}
-details{margin-top:16px}
-summary{cursor:pointer;color:var(--acc)}
-details textarea,details input{width:100%;border:1px solid var(--line);border-radius:8px;background:var(--card);padding:8px;margin:6px 0}
-.note{color:var(--mute);font-size:13px}
-html{scroll-behavior:smooth}
-body{transition:background .7s}
-body.t1{--bg:#e3eafa}body.t2{--bg:#f4e8d9}body.t3{--bg:#e0efe5}
-@media (prefers-color-scheme:dark){body.t1{--bg:#151c33}body.t2{--bg:#2a2119}body.t3{--bg:#15261d}}
-.sec{min-height:100svh;display:flex;flex-direction:column;justify-content:center;max-width:760px;margin:0 auto;padding:max(28px,env(safe-area-inset-top)) 22px 28px}
-.serif{font-family:"Noto Serif KR","AppleMyungjo",serif}
-.hero h2{font:700 clamp(54px,17vw,120px)/1.02 "Noto Serif KR","AppleMyungjo",serif;letter-spacing:-.04em;margin:0 0 22px;will-change:transform,opacity}
-.type{font:20px/1.6 "Noto Serif KR","AppleMyungjo",serif;color:var(--acc);min-height:2em}
-.caret{display:inline-block;width:2px;height:1.1em;background:var(--acc);vertical-align:-3px;margin-left:2px;animation:bl 1s steps(1) infinite}
-@keyframes bl{50%{opacity:0}}
-.scroll{color:var(--mute);font-size:14px;margin-top:48px}
-.step{opacity:0;transform:translateY(32px);transition:opacity .8s,transform .8s}
-.step.in{opacity:1;transform:none}
-.step h3,.sec>h3{font:700 clamp(34px,10vw,64px)/1.15 "Noto Serif KR","AppleMyungjo",serif;letter-spacing:-.03em;margin:0 0 14px}
-.step p{color:var(--mute);font-size:18px;max-width:28em;margin:0}
-.links{display:grid;gap:12px;margin-top:10px}
-.lk{display:flex;justify-content:space-between;align-items:center;width:100%;text-align:left;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px 20px;font-size:20px;font-weight:600}
-.lk small{display:block;font-weight:400;color:var(--mute);font-size:13px}
-.lk .pct{font-size:24px;color:var(--ok)}
-.top{font-size:14px;color:var(--acc);text-decoration:none}
-@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.step{opacity:1;transform:none;transition:none}.caret{animation:none}}
-
-.view-hidden{display:none!important}
-.grp-title{font-size:14px;font-weight:700;color:var(--mute);margin:20px 0 8px;letter-spacing:.02em}
-.links-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px}
-.lk.sm{padding:13px 15px;font-size:15px;border-radius:12px}
-.lk.sm .pct{font-size:17px}
-.back-btn{display:inline-flex;align-items:center;gap:6px;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:7px 12px;font-size:14px;color:var(--acc);cursor:pointer;margin-bottom:10px}
-.back-btn:hover{background:var(--hi)}
-
-.nav-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;align-items:center}
-.nav-row button{margin:0}
-.btn-danger{color:#b91c1c;border-color:#fca5a5}
-.btn-danger:hover{background:#fef2f2}
-.ref-row{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
-.idx-badge{font-size:12px;color:var(--mute);font-variant-numeric:tabular-nums}
-
-.subj-wrap{display:flex;flex-direction:column;gap:10px}
-.lk.open{border-color:var(--acc);background:var(--hi)}
-.chap-drawer{display:none;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;margin-top:-2px;margin-bottom:6px}
-.chap-drawer.open{display:block}
-.chap-drawer-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;gap:8px;flex-wrap:wrap}
-.chap-drawer-title{font-size:14px;font-weight:700;color:var(--mute)}
-.chap-all-btn{background:var(--acc);color:#fff;border:none;border-radius:8px;padding:7px 14px;font-size:13px;font-weight:600;cursor:pointer}
-.chap-all-btn:hover{opacity:.9}
-
-.ref-pill{display:inline-block;font-size:11px;padding:2px 7px;border-radius:999px;background:var(--hi);color:var(--acc);font-weight:600;margin-left:6px}
-.ref-box{margin-top:12px;padding:12px;border:1px solid var(--line);border-radius:10px;background:var(--bg);font-size:13.5px;line-height:1.55;display:none}
+.live{display:flex;gap:16px;color:var(--mute);font-size:13px;margin-top:10px;font-variant-numeric:tabular-nums}
+#res{margin-top:12px;padding:14px 16px;border-radius:14px;background:var(--tonal);display:none}
+#res .row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+#res .row button{height:38px;border-radius:999px;font-size:13px;font-weight:600;cursor:pointer}
+.ref-box{margin-top:12px;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:var(--surf);font-size:13.5px;line-height:1.6;display:none}
 .ref-box.open{display:block}
 .ref-box-head{display:flex;justify-content:space-between;align-items:center;font-weight:700;color:var(--acc);margin-bottom:8px;font-size:13px}
 .ref-item{padding:8px 0;border-top:1px dashed var(--line)}
 .ref-item:first-of-type{border-top:none;padding-top:2px}
-.ref-item-tag{display:inline-block;font-size:12px;font-weight:700;color:var(--acc);background:var(--hi);padding:1px 7px;border-radius:6px;margin-bottom:4px}
+.ref-item-tag{display:inline-block;font-size:12px;font-weight:700;color:var(--tonal-ink);background:var(--tonal);padding:1px 7px;border-radius:6px;margin-bottom:4px}
 .ref-item-tag.ext{color:var(--mute);background:transparent;border:1px solid var(--line)}
 .ref-item-body{color:var(--ink);word-break:keep-all}
 .ref-item-body.mute{color:var(--mute);font-size:12.5px}
 
-html,body{overflow-x:hidden;-webkit-overflow-scrolling:touch}
-#links.sec{min-height:auto;justify-content:flex-start;padding-top:48px;padding-bottom:180px}
-#landing-view{padding-bottom:80px}
+.nav-row.quiet{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:6px;margin-top:14px;padding-top:10px;border-top:1px solid var(--line)}
+.nav-row.quiet .nav-grp{display:flex;gap:6px;align-items:center}
+.nav-row.quiet button{height:34px;padding:0 12px;font-size:12.5px;font-weight:600;border-radius:999px;border:1px solid transparent;background:transparent;color:var(--mute);cursor:pointer;white-space:nowrap}
+.nav-row.quiet button:hover{background:var(--surf);color:var(--ink)}
+.nav-row.quiet button.btn-danger:hover{color:var(--bad);background:rgba(197,34,31,.08)}
 
-body.pin-locked > *:not(#pin-gate){display:none!important}
-#pin-gate{position:fixed;inset:0;z-index:9999;background:var(--bg);display:flex;align-items:center;justify-content:center;padding:24px}
-#pin-gate[hidden]{display:none}
-.pin-card{width:100%;max-width:340px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:28px 22px;text-align:center;box-shadow:0 12px 32px rgba(0,0,0,.08)}
-.pin-card h2{margin:0 0 6px;font-size:20px;color:var(--ink)}
-.pin-card p{margin:0 0 18px;font-size:14px;color:var(--mute)}
-.pin-card label{display:block;text-align:left;font-size:12px;font-weight:600;color:var(--mute);margin:0 0 4px 2px}
-.pin-card input{width:100%;padding:11px 13px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);font-size:15px;margin-bottom:12px}
-.pin-card button{width:100%;padding:12px;border-radius:10px;background:var(--acc);color:#fff;border:none;font-size:15px;font-weight:600;cursor:pointer}
-.pin-err{min-height:20px;margin-top:8px;font-size:13px;color:var(--bad)}
-
-.vtabs{display:inline-flex;gap:4px;padding:4px;background:var(--line);border-radius:10px;margin:0 0 12px}
-.vtabs button{border:none;background:transparent;padding:7px 14px;border-radius:8px;font-size:14px;font-weight:600;color:var(--mute);cursor:pointer}
-.vtabs button.on{background:var(--card);color:var(--ink);box-shadow:0 1px 4px rgba(0,0,0,.08)}
+/* ---------- Google Docs Notebook Sheet ---------- */
 #notebook-panel{display:none}
-.nb-bar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:10px}
-.nb-sheet{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px 24px 28px;box-shadow:0 8px 28px rgba(0,0,0,.06);max-height:62vh;overflow-y:auto;-webkit-overflow-scrolling:touch}
-.nb-pair{padding:10px 0 12px;border-bottom:1px solid var(--line)}
+.nb-sheet{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:0 26px 28px;box-shadow:0 2px 16px rgba(0,0,0,.04);max-height:66vh;overflow-y:auto;-webkit-overflow-scrolling:touch}
+.nb-sticky{position:sticky;top:0;z-index:10;background:var(--card);padding:16px 0 8px;margin-bottom:4px}
+.nb-top{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;padding:6px 12px;background:var(--surf);border-radius:999px;margin-bottom:14px}
+.nb-left{display:flex;gap:4px;align-items:center;flex-wrap:wrap}
+.nb-left select{height:32px;padding:0 8px;font-size:13px;font-weight:600;border:none;background:transparent;color:var(--ink);border-radius:999px;cursor:pointer}
+.nb-left select:hover{background:rgba(0,0,0,.04)}
+.nb-right{display:flex;gap:4px;align-items:center}
+.nb-icon{height:32px;min-width:32px;padding:0 10px;border-radius:999px;border:none;background:transparent;color:var(--mute);font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap}
+.nb-icon:hover{background:var(--card);color:var(--ink)}
+.nb-tray{display:none;gap:6px;flex-wrap:wrap;justify-content:flex-end;margin:-6px 0 12px}
+.nb-tray.open{display:flex}
+.nb-tray button{height:32px;padding:0 12px;border-radius:999px;font-size:12.5px;font-weight:600;cursor:pointer;color:var(--tonal-ink);background:var(--tonal);border:none}
+
+.nb-pair,.nb-row-item{padding:12px 0;border-bottom:1px solid var(--line)}
+.nb-row-item.is-cur{background:rgba(26,115,232,.03);margin:0 -12px;padding:14px 12px;border-radius:14px;border-bottom:1px solid var(--acc)}
+.nb-row-jump{min-height:34px;padding:6px 10px;border-bottom:1px dashed var(--line);color:var(--mute);font-size:13.5px;cursor:pointer;display:flex;align-items:center}
+.nb-row-jump:hover{color:var(--acc);border-bottom-color:var(--acc)}
 .nb-p-done{font:16px/1.65 "Noto Serif KR","AppleMyungjo",serif;color:var(--mute);word-break:keep-all}
 .nb-u-done{font:18px/1.65 "Noto Serif KR","AppleMyungjo",serif;color:var(--ok);margin-top:4px;display:flex;justify-content:space-between;align-items:baseline;gap:12px;word-break:keep-all}
 .nb-u-meta{font:12px/1.4 -apple-system,sans-serif;color:var(--mute);white-space:nowrap;flex-shrink:0}
-.nb-active{padding:14px 0 8px}
-.nb-prompt{font:20px/1.75 "Noto Serif KR","AppleMyungjo",serif;color:var(--ink);word-break:keep-all;margin-bottom:8px}
-.nb-blank{display:inline-block;padding:0 5px;margin:0 1px;border-radius:5px;background:var(--hi);color:var(--acc);font-weight:700;letter-spacing:1px}
-.nb-blank.peek{background:#fff3cd;color:#856404}
-.nb-input{width:100%;min-height:46px;padding:8px 10px;border:none;border-bottom:2px solid var(--acc);border-radius:6px 6px 0 0;background:rgba(39,64,139,.04);font:20px/1.7 "Noto Serif KR","AppleMyungjo",serif;color:var(--ink);outline:none;white-space:pre-wrap;word-break:keep-all}
+.nb-active{padding:10px 0 6px}
+.nb-prompt{font:20px/1.75 "Noto Serif KR","AppleMyungjo",serif;color:var(--ink);word-break:keep-all;margin-bottom:10px}
+.nb-blank{display:inline-block;padding:0 6px;margin:0 1px;border-radius:6px;background:var(--tonal);color:var(--tonal-ink);font-weight:700;letter-spacing:1px}
+.nb-blank.peek{background:#fef7e0;color:#b06000}
+.nb-input{width:100%;min-height:46px;padding:8px 10px;border:none;border-bottom:2px solid var(--acc);border-radius:8px 8px 0 0;background:rgba(26,115,232,.04);font:20px/1.7 "Noto Serif KR","AppleMyungjo",serif;color:var(--ink);outline:none;white-space:pre-wrap;word-break:keep-all}
 .nb-input:empty:before{content:attr(data-placeholder);color:var(--mute);pointer-events:none}
-.nb-input.bad-now{border-bottom-color:var(--bad);background:rgba(192,57,43,.05)}
-.nb-ruled{height:38px;border-bottom:1px dashed var(--line);opacity:.55}
-.nb-pill{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-top:10px;font-size:13px;color:var(--mute)}
+.nb-input.bad-now{border-bottom-color:var(--bad);background:rgba(197,34,31,.05)}
+.nb-ruled{height:38px;border-bottom:1px dashed var(--line);opacity:.5}
+.nb-pill{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-top:10px;font-size:12.5px;color:var(--mute)}
 .nb-warn{color:var(--bad);font-weight:600}
+
+details{margin-top:18px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px 16px}
+summary{cursor:pointer;color:var(--acc);font-weight:600;font-size:13.5px}
+details textarea,details input{width:100%;border:1px solid var(--line);border-radius:10px;background:var(--surf);padding:9px 11px;margin:6px 0}
+.note{color:var(--mute);font-size:13px}
+
+/* ---------- Login Gate ---------- */
+body.pin-locked > *:not(#pin-gate){display:none!important}
+#pin-gate{position:fixed;inset:0;z-index:9999;background:var(--bg);display:flex;align-items:center;justify-content:center;padding:24px}
+#pin-gate[hidden]{display:none}
+.pin-card{width:100%;max-width:340px;background:var(--card);border:1px solid var(--line);border-radius:24px;padding:28px 24px;text-align:center;box-shadow:0 8px 32px rgba(0,0,0,.08)}
+.pin-card h2{margin:0 0 6px;font-size:20px;color:var(--ink)}
+.pin-card p{margin:0 0 18px;font-size:14px;color:var(--mute)}
+.pin-card label{display:block;text-align:left;font-size:12px;font-weight:600;color:var(--mute);margin:0 0 4px 2px}
+.pin-card input{width:100%;padding:11px 14px;border:1px solid var(--line);border-radius:12px;background:var(--surf);color:var(--ink);font-size:15px;margin-bottom:12px}
+.pin-card button{width:100%;height:44px;border-radius:999px;background:var(--acc);color:#fff;border:none;font-size:15px;font-weight:700;cursor:pointer}
+.pin-err{min-height:20px;margin-top:8px;font-size:13px;color:var(--bad)}
 </style>
 </head>
 <body class="pin-locked">
@@ -176,9 +234,36 @@ body.pin-locked > *:not(#pin-gate){display:none!important}
 </script>
 <div id="landing-view">
 <header class="sec hero" id="hero" data-tone="0">
-  <h2 id="h2">치면서<br>외운다.</h2>
+  <span class="g-badge">CTA 암기 타자</span>
+  <h2 id="h2">치면서 외운다.</h2>
   <div class="type"><span id="tw"></span><i class="caret"></i></div>
-  <p class="scroll">세무사 세법·상법·재정학 암기 트레이너. 아래로 스크롤하세요.</p>
+  <div class="qs-panel">
+    <div class="qs-modes">
+      <button type="button" class="qs-mbtn" id="qsCard"><b>카드형</b><span>SRS 복습 · 집중 암기</span></button>
+      <button type="button" class="qs-mbtn on" id="qsNb"><b>공책형</b><span>따라쓰기 · 무작위 빈칸</span></button>
+    </div>
+    <div class="qs-actions">
+      <button type="button" class="qs-go" id="qsResume">바로 시작 →</button>
+      <button type="button" class="qs-shuf" id="qsShuffle">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <polyline points="16 3 21 3 21 8"></polyline>
+          <line x1="4" y1="20" x2="21" y2="3"></line>
+          <polyline points="21 16 21 21 16 21"></polyline>
+          <line x1="15" y1="15" x2="21" y2="21"></line>
+          <line x1="4" y1="4" x2="9" y2="9"></line>
+        </svg>
+        <span>전 과목 셔플 복습</span>
+      </button>
+    </div>
+    <div class="qs-chips" id="qsChips">
+      <button type="button" class="qs-chip" data-law="부가가치세법">부가가치세법</button>
+      <button type="button" class="qs-chip" data-law="소득세법">소득세법</button>
+      <button type="button" class="qs-chip" data-law="법인세법">법인세법</button>
+      <button type="button" class="qs-chip" data-law="상법(회사법)">상법(회사법)</button>
+      <button type="button" class="qs-chip" data-law="재정학">재정학</button>
+    </div>
+    <button type="button" class="qs-more" id="qsMore">세부 단원 직접 고르기 ↓</button>
+  </div>
 </header>
 <section class="sec" data-tone="1"><div class="step"><h3>먼저, 친다.</h3><p>법령 조문과 재정학 옳은 선지를 한 문장씩 그대로 타자로 옮깁니다. 눈과 손으로 저장강도를 쌓습니다.</p></div></section>
 <section class="sec" data-tone="2"><div class="step"><h3>그다음, 꺼낸다.</h3><p>핵심 단어를 가린 문장을 기억만으로 채워 칩니다. 꺼내 보는 횟수가 인출강도를 키웁니다.</p></div></section>
@@ -188,13 +273,20 @@ body.pin-locked > *:not(#pin-gate){display:none!important}
 </div>
 
 <main id="trainer-view" class="view-hidden" data-tone="0">
-<button type="button" class="back-btn" id="back-home">← 과목·단원 목록으로</button>
-<h1>세무사 세법·상법·재정학 암기 타자</h1>
-<div class="vtabs" role="tablist">
-  <button type="button" id="tabCard" class="on">카드 모드</button>
-  <button type="button" id="tabNb">공책 따라쓰기 모드</button>
+<div class="tr-top">
+  <div class="tr-left">
+    <button type="button" class="back-btn" id="back-home">← 목록</button>
+    <span class="tr-scope" id="trScope">세무사 암기 타자</span>
+  </div>
+  <div class="tr-right">
+    <div class="vtabs" role="tablist">
+      <button type="button" id="tabCard" class="on">카드형</button>
+      <button type="button" id="tabNb">공책형</button>
+    </div>
+    <button type="button" class="gear-btn" id="toggleBar" title="과목·단원·설정"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9c.26.6.77 1.02 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg></button>
+  </div>
 </div>
-<div class="bar">
+<div class="bar collapsed" id="ctrlBar">
   <select id="law"></select>
   <select id="chap"></select>
   <select id="mode">
@@ -204,6 +296,7 @@ body.pin-locked > *:not(#pin-gate){display:none!important}
   <select id="order">
     <option value="srs">복습 우선 (SRS)</option>
     <option value="seq">순차 연습 (1번부터)</option>
+    <option value="rand">무작위 (셔플 복습)</option>
   </select>
   <select id="refMode">
     <option value="replace">참조 조문 → 원문 치환</option>
@@ -215,19 +308,34 @@ body.pin-locked > *:not(#pin-gate){display:none!important}
 <div class="meter"><i id="mt"></i></div>
 
 <div id="notebook-panel">
-  <div class="nb-bar">
-    <select id="nbDiff">
-      <option value="0">따라쓰기 (전체 보기)</option>
-      <option value="0.3">빈칸 암기 (핵심 30%)</option>
-      <option value="0.6">빈칸 심화 (핵심 60%)</option>
-    </select>
+  <div class="nb-sheet" id="nbSheet">
+  <div class="nb-sticky">
+  <div class="nb-top">
+    <div class="nb-left">
+      <select id="nbDiff">
+        <option value="0">따라쓰기</option>
+        <option value="0.3">빈칸 30%</option>
+        <option value="0.6">빈칸 60%</option>
+      </select>
+      <select id="nbLayout">
+        <option value="one">한 문장씩</option>
+        <option value="all">장 전체</option>
+      </select>
+    </div>
+    <div class="nb-right">
+      <button type="button" class="nb-icon" id="nbPrev" title="이전 문장">←</button>
+      <button type="button" class="nb-icon" id="nbNext" title="다음 문장">→</button>
+      <button type="button" class="nb-icon" id="nbClear" title="공책 비우기">비우기</button>
+      <button type="button" class="nb-icon" id="nbMoreBtn" title="빈칸 도구" style="display:none">⋯</button>
+    </div>
+  </div>
+  <div class="nb-tray" id="nbTray">
     <button type="button" id="nbShuffle">빈칸 다시 섞기</button>
     <button type="button" id="nbHint">힌트 보기</button>
-    <button type="button" id="nbPrev">← 이전</button>
-    <button type="button" id="nbNext">다음 →</button>
-    <button type="button" id="nbClear">공책 비우기</button>
   </div>
-  <div class="nb-sheet" id="nbSheet">
+  </div>
+
+    <div id="nbAllWrap" style="display:none"></div>
     <div id="nbHist"></div>
     <div class="nb-active" id="nbActive">
       <div class="ref-row"><div class="ref" id="nbRef"></div><span class="idx-badge" id="nbIdx"></span></div>
@@ -251,11 +359,15 @@ body.pin-locked > *:not(#pin-gate){display:none!important}
   <div class="live"><span id="lcpm">0타/분</span><span id="lacc">정확도 100%</span><span id="lbox"></span></div>
   <div id="res"></div>
   <div class="ref-box" id="refBox"></div>
-  <div class="nav-row">
-    <button type="button" id="prevBtn">← 이전 문장</button>
-    <button type="button" id="replayBtn">이 문장 다시 치기</button>
-    <button type="button" id="nextBtn">다음 문장 →</button>
-    <button type="button" id="skip">이 문장 제외 (시험범위 아님)</button>
+  <div class="nav-row quiet">
+    <div class="nav-grp">
+      <button type="button" id="prevBtn">← 이전</button>
+      <button type="button" id="nextBtn">다음 →</button>
+    </div>
+    <div class="nav-grp">
+      <button type="button" id="replayBtn">다시 치기</button>
+      <button type="button" id="skip" class="btn-danger">시험범위 제외</button>
+    </div>
   </div>
 </div>
 
@@ -480,7 +592,19 @@ let cur=null,T='',mask=new Set(),last='',seqIdx=0;
 function pick(step){
   const now=Date.now(),p=pool();
   if(!p.length){cur=null;$('ref').textContent='';$('idxbadge').textContent='';$('tgt').textContent='문장이 없습니다. 아래에서 데이터를 불러오세요.';return}
+  if($('order').value==='rand'&&typeof step!=='number'){
+    const cand=p.filter(s=>s.id!==last);
+    const chosen=(cand.length?cand:p)[Math.floor(Math.random()*(cand.length?cand.length:p.length))];
+    start(chosen);
+    return;
+  }
   if($('order').value==='seq'||typeof step==='number'){
+    if($('order').value==='rand'&&step===1){
+      const cand=p.filter(s=>s.id!==last);
+      const chosen=(cand.length?cand:p)[Math.floor(Math.random()*(cand.length?cand.length:p.length))];
+      start(chosen);
+      return;
+    }
     if(typeof step==='number'){
       const idx=cur?p.findIndex(s=>s.id===cur.id):-1;
       seqIdx=idx>=0?(idx+step+p.length)%p.length:0;
@@ -779,11 +903,15 @@ addEventListener('scroll',()=>{
 var armed=false;
 cards();refreshSelects();pick();
 
-/* ---------- 공책 따라쓰기 + 무작위 핵심 빈칸 모드 ---------- */
+/* ---------- 공책 따라쓰기 + 무작위 핵심 빈칸 + 장 전체 펼치기 모드 ---------- */
 (function(){
   let nbMode=false,nbComp=false,nbT0=0,nbPeek=false,nbMaskSet=new Set();
-  const nbInp=$('nbInp'),nbHist=$('nbHist'),nbSheet=$('nbSheet');
+  const nbDoneMap=Object.create(null),nbItemMasks=Object.create(null);
+  const nbInp=$('nbInp'),nbHist=$('nbHist'),nbSheet=$('nbSheet'),nbActive=$('nbActive'),nbAllWrap=$('nbAllWrap');
   if(!nbInp)return;
+
+  if(S.nbLayout&&$('nbLayout'))$('nbLayout').value=S.nbLayout;
+  const isAll=()=>($('nbLayout')&&$('nbLayout').value==='all');
 
   Object.defineProperty(nbInp,'value',{
     get(){return (nbInp.textContent||'').replace(/\u00a0/g,' ').replace(/\r?\n/g,'');},
@@ -817,32 +945,86 @@ cards();refreshSelects();pick();
     return tokens;
   }
 
-  function rollBlanks(text,ratio){
-    nbMaskSet=new Set();
-    if(!ratio||ratio<=0)return;
+  function rollMaskForText(text,ratio){
+    const set=new Set();
+    if(!ratio||ratio<=0)return set;
     const toks=buildTokens(text).filter(t=>!t.space&&t.score>0);
-    if(!toks.length)return;
+    if(!toks.length)return set;
     const scored=toks.map(t=>({idx:t.idx,w:t.score+Math.random()*2.8})).sort((a,b)=>b.w-a.w);
     const cnt=Math.max(1,Math.min(toks.length,Math.round(toks.length*ratio)));
-    for(let i=0;i<cnt;i++)nbMaskSet.add(scored[i].idx);
+    for(let i=0;i<cnt;i++)set.add(scored[i].idx);
+    return set;
+  }
+
+  function renderPromptHtml(text,maskSet,peek){
+    const toks=buildTokens(text);
+    let html='';
+    toks.forEach(t=>{
+      if(t.space){html+=esc(t.raw);return;}
+      if(maskSet&&maskSet.has(t.idx)){
+        const txt=peek?t.stem:'○'.repeat(t.stem.length);
+        html+=esc(t.lead)+`<span class="nb-blank${peek?' peek':''}">${esc(txt)}</span>`+esc(t.part+t.trail);
+      }else{
+        html+=esc(t.raw);
+      }
+    });
+    return html;
+  }
+
+  function rollBlanks(text,ratio){
+    nbMaskSet=rollMaskForText(text,ratio);
+    if(cur)nbItemMasks[cur.id]=nbMaskSet;
   }
 
   function renderNbPrompt(){
     if(!cur)return;
     $('nbRef').textContent=$('ref').textContent;
     $('nbIdx').textContent=$('idxbadge').textContent;
-    const toks=buildTokens(T);
-    let html='';
-    toks.forEach(t=>{
-      if(t.space){html+=esc(t.raw);return;}
-      if(nbMaskSet.has(t.idx)){
-        const txt=nbPeek?t.stem:'○'.repeat(t.stem.length);
-        html+=esc(t.lead)+`<span class="nb-blank${nbPeek?' peek':''}">${esc(txt)}</span>`+esc(t.part+t.trail);
+    $('nbPrompt').innerHTML=renderPromptHtml(T,nbMaskSet,nbPeek);
+  }
+
+  function renderAllSheet(rerollAll){
+    if(!isAll()){
+      nbAllWrap.style.display='none';
+      nbHist.style.display='block';
+      nbSheet.appendChild(nbActive);
+      return;
+    }
+    nbHist.style.display='none';
+    nbAllWrap.style.display='block';
+    const ratio=parseFloat($('nbDiff').value||'0');
+    const items=pool().slice(0,200);
+    nbAllWrap.innerHTML='';
+    let activeSlot=null;
+    items.forEach((s,idx)=>{
+      const disp=resolveSentenceRefs(s).displayText;
+      if(rerollAll||!nbItemMasks[s.id])nbItemMasks[s.id]=rollMaskForText(disp,ratio);
+      if(cur&&s.id===cur.id){
+        nbMaskSet=nbItemMasks[s.id];
+        const box=document.createElement('div');
+        box.className='nb-row-item is-cur';
+        box.appendChild(nbActive);
+        nbAllWrap.appendChild(box);
+        activeSlot=box;
+      }else if(nbDoneMap[s.id]){
+        const d=nbDoneMap[s.id];
+        const row=document.createElement('div');
+        row.className='nb-row-item';
+        const refTxt=s.ref||(s.law+(s.article?' '+s.article:''));
+        row.innerHTML=`<div class="nb-p-done">${esc(refTxt?('['+refTxt+'] '):'')}${esc(disp)}</div><div class="nb-u-done"><span>${esc(d.text)}</span><span class="nb-u-meta">${d.acc}% · ${d.cpm}타/분</span></div>`;
+        nbAllWrap.appendChild(row);
       }else{
-        html+=esc(t.raw);
+        const row=document.createElement('div');
+        row.className='nb-row-item';
+        const refTxt=s.ref||(s.law+(s.article?' '+s.article:''));
+        const mset=nbItemMasks[s.id];
+        const pHtml=renderPromptHtml(disp,mset,nbPeek);
+        row.innerHTML=`<div class="nb-p-done" style="color:var(--ink)"><span style="color:var(--mute);font-size:12px;margin-right:6px">${idx+1}. ${esc(refTxt)}</span>${pHtml}</div><div class="nb-row-jump">눌러서 이 문장부터 이어 쓰기</div>`;
+        row.querySelector('.nb-row-jump').addEventListener('click',()=>{start(s);});
+        nbAllWrap.appendChild(row);
       }
     });
-    $('nbPrompt').innerHTML=html;
+    if(activeSlot)setTimeout(()=>{try{activeSlot.scrollIntoView({block:'center',behavior:'smooth'});}catch(e){}},30);
   }
 
   function nbAcc(){
@@ -876,8 +1058,9 @@ cards();refreshSelects();pick();
     if(reroll)rollBlanks(T,ratio);
     nbPeek=false;$('nbHint').textContent='힌트 보기';
     nbInp.value='';nbT0=0;nbComp=false;
+    renderAllSheet(reroll);
     renderNbPrompt();nbLive();
-    if(nbMode)setTimeout(()=>{try{nbInp.focus({preventScroll:true});}catch(e){}},30);
+    if(nbMode)setTimeout(()=>{try{nbInp.focus({preventScroll:true});}catch(e){}},40);
   }
 
   function commitNb(){
@@ -891,12 +1074,18 @@ cards();refreshSelects();pick();
     g.next=Date.now()+INTV[g.box-1]*DAY;
     S.prog[cur.id]=g;save();stats();
 
-    const row=document.createElement('div');
-    row.className='nb-pair';
-    row.innerHTML=`<div class="nb-p-done">${esc($('nbRef').textContent?('['+$('nbRef').textContent+'] '):'')}${esc(T)}</div><div class="nb-u-done"><span>${esc(nbInp.value.trim())}</span><span class="nb-u-meta">${a}% · ${cpm}타/분</span></div>`;
-    nbHist.appendChild(row);
-    nbSheet.scrollTop=nbSheet.scrollHeight;
-    pick(1);
+    const typed=nbInp.value.trim();
+    nbDoneMap[cur.id]={text:typed,cpm,acc:a};
+    if(!isAll()){
+      const row=document.createElement('div');
+      row.className='nb-pair';
+      row.innerHTML=`<div class="nb-p-done">${esc($('nbRef').textContent?('['+$('nbRef').textContent+'] '):'')}${esc(T)}</div><div class="nb-u-done"><span>${esc(typed)}</span><span class="nb-u-meta">${a}% · ${cpm}타/분</span></div>`;
+      nbHist.appendChild(row);
+      nbSheet.scrollTop=nbSheet.scrollHeight;
+      pick($('order').value==='seq'?1:undefined);
+    }else{
+      pick(1);
+    }
     syncNb(true);
   }
 
@@ -926,17 +1115,127 @@ cards();refreshSelects();pick();
   $('tabCard').addEventListener('click',()=>setMode(false));
   $('tabNb').addEventListener('click',()=>setMode(true));
   $('nbDiff').addEventListener('change',()=>syncNb(true));
-  $('nbShuffle').addEventListener('click',()=>{rollBlanks(T,parseFloat($('nbDiff').value||'0'));renderNbPrompt();nbInp.focus();});
-  $('nbHint').addEventListener('click',()=>{nbPeek=!nbPeek;$('nbHint').textContent=nbPeek?'힌트 숨기기':'힌트 보기';renderNbPrompt();nbInp.focus();});
+  $('nbLayout').addEventListener('change',()=>{
+    S.nbLayout=$('nbLayout').value;save();
+    syncNb(true);
+  });
+  $('nbShuffle').addEventListener('click',()=>{
+    const ratio=parseFloat($('nbDiff').value||'0');
+    if(isAll()){renderAllSheet(true);renderNbPrompt();}
+    else{rollBlanks(T,ratio);renderNbPrompt();}
+    nbInp.focus();
+  });
+  $('nbHint').addEventListener('click',()=>{
+    nbPeek=!nbPeek;$('nbHint').textContent=nbPeek?'힌트 숨기기':'힌트 보기';
+    if(isAll())renderAllSheet(false);
+    renderNbPrompt();nbInp.focus();
+  });
   $('nbPrev').addEventListener('click',()=>{pick(-1);syncNb(true);});
-  $('nbNext').addEventListener('click',()=>{pick(1);syncNb(true);});
-  $('nbClear').addEventListener('click',()=>{nbHist.innerHTML='';nbInp.focus();});
+  $('nbNext').addEventListener('click',()=>{pick(isAll()?1:($('order').value==='seq'?1:undefined));syncNb(true);});
+  $('nbClear').addEventListener('click',()=>{
+    nbHist.innerHTML='';
+    Object.keys(nbDoneMap).forEach(k=>delete nbDoneMap[k]);
+    if(isAll())renderAllSheet(false);
+    nbInp.focus();
+  });
 
   const origStart=start;
   start=function(item){
     origStart(item);
-    if(nbMode)syncNb(true);
+    if(nbMode)syncNb(false);
   };
+})();
+
+/* ---------- 첫 화면 심플 앤 스피드 & 셔플 진입 ---------- */
+(function(){
+  if(!S.prefView)S.prefView='nb';
+  function updateQsUI(){
+    const isNb=S.prefView==='nb';
+    $('qsCard').classList.toggle('on',!isNb);
+    $('qsNb').classList.toggle('on',isNb);
+    const loc=S.lastLoc;
+    if(loc&&loc.law){
+      $('qsResume').textContent=`이어하기 · ${loc.law}`;
+    }else{
+      $('qsResume').textContent='바로 시작하기 →';
+    }
+  }
+  function applyPrefView(){
+    const targetBtn=S.prefView==='nb'?$('tabNb'):$('tabCard');
+    if(targetBtn)targetBtn.click();
+  }
+  $('qsCard').addEventListener('click',()=>{S.prefView='card';save();updateQsUI();});
+  $('qsNb').addEventListener('click',()=>{S.prefView='nb';save();updateQsUI();});
+  $('qsResume').addEventListener('click',()=>{
+    const loc=S.lastLoc||{law:'부가가치세법',chap:''};
+    if($('order').value==='rand')$('order').value='srs';
+    openTrainer(loc.law||'부가가치세법',loc.chap||'');
+    applyPrefView();
+  });
+  $('qsShuffle').addEventListener('click',()=>{
+    $('order').value='rand';
+    openTrainer('','');
+    applyPrefView();
+  });
+  document.querySelectorAll('#qsChips .qs-chip').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      if($('order').value==='rand')$('order').value='srs';
+      openTrainer(btn.dataset.law,'');
+      applyPrefView();
+    });
+  });
+  $('qsMore').addEventListener('click',()=>{
+    const el=$('links');
+    if(el)el.scrollIntoView({behavior:'smooth'});
+  });
+
+  const origOpen=openTrainer;
+  openTrainer=function(lawVal,chapVal){
+    origOpen(lawVal,chapVal);
+    if(lawVal){S.lastLoc={law:lawVal,chap:chapVal||''};save();}
+    updateQsUI();
+  };
+  ['law','chap'].forEach(id=>$(id).addEventListener('change',()=>{
+    if($('law').value){S.lastLoc={law:$('law').value,chap:$('chap').value||''};save();updateQsUI();}
+  }));
+  $('tabCard').addEventListener('click',()=>{S.prefView='card';save();updateQsUI();});
+  $('tabNb').addEventListener('click',()=>{S.prefView='nb';save();updateQsUI();});
+
+  updateQsUI();
+})();
+
+/* ---------- 연습 화면 버튼 최소화 (Zen UI) ---------- */
+(function(){
+  const bar=$('ctrlBar'),tBtn=$('toggleBar');
+  if(tBtn&&bar){
+    tBtn.addEventListener('click',()=>{
+      const open=bar.classList.toggle('collapsed');
+      tBtn.classList.toggle('on',!open);
+    });
+  }
+  const mBtn=$('nbMoreBtn'),tray=$('nbTray');
+  if(mBtn&&tray){
+    mBtn.addEventListener('click',()=>{tray.classList.toggle('open');});
+  }
+  function syncNbTools(){
+    const isBlank=parseFloat(($('nbDiff')&&$('nbDiff').value)||'0')>0;
+    if($('nbMoreBtn'))$('nbMoreBtn').style.display=isBlank?'':'none';
+    if(!isBlank&&tray)tray.classList.remove('open');
+  }
+  if($('nbDiff'))$('nbDiff').addEventListener('change',syncNbTools);
+  syncNbTools();
+
+  function updateScopeLabel(){
+    const el=$('trScope');if(!el)return;
+    if($('order').value==='rand'&&!$('law').value){el.textContent='전 과목 셔플 복습';return;}
+    const l=$('law').value||'전체 과목';
+    const c=$('chap').value?(' · '+$('chap').value):'';
+    el.textContent=l+c;
+  }
+  ['law','chap','order'].forEach(id=>{if($(id))$(id).addEventListener('change',updateScopeLabel);});
+  const origOpen2=openTrainer;
+  openTrainer=function(lv,cv){origOpen2(lv,cv);updateScopeLabel();};
+  updateScopeLabel();
 })();
 </script>
 </body>
