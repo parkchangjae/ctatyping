@@ -109,6 +109,27 @@ body.pin-locked > *:not(#pin-gate){display:none!important}
 .pin-card input{width:100%;padding:11px 13px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);font-size:15px;margin-bottom:12px}
 .pin-card button{width:100%;padding:12px;border-radius:10px;background:var(--acc);color:#fff;border:none;font-size:15px;font-weight:600;cursor:pointer}
 .pin-err{min-height:20px;margin-top:8px;font-size:13px;color:var(--bad)}
+
+.vtabs{display:inline-flex;gap:4px;padding:4px;background:var(--line);border-radius:10px;margin:0 0 12px}
+.vtabs button{border:none;background:transparent;padding:7px 14px;border-radius:8px;font-size:14px;font-weight:600;color:var(--mute);cursor:pointer}
+.vtabs button.on{background:var(--card);color:var(--ink);box-shadow:0 1px 4px rgba(0,0,0,.08)}
+#notebook-panel{display:none}
+.nb-bar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:10px}
+.nb-sheet{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px 24px 28px;box-shadow:0 8px 28px rgba(0,0,0,.06);max-height:62vh;overflow-y:auto;-webkit-overflow-scrolling:touch}
+.nb-pair{padding:10px 0 12px;border-bottom:1px solid var(--line)}
+.nb-p-done{font:16px/1.65 "Noto Serif KR","AppleMyungjo",serif;color:var(--mute);word-break:keep-all}
+.nb-u-done{font:18px/1.65 "Noto Serif KR","AppleMyungjo",serif;color:var(--ok);margin-top:4px;display:flex;justify-content:space-between;align-items:baseline;gap:12px;word-break:keep-all}
+.nb-u-meta{font:12px/1.4 -apple-system,sans-serif;color:var(--mute);white-space:nowrap;flex-shrink:0}
+.nb-active{padding:14px 0 8px}
+.nb-prompt{font:20px/1.75 "Noto Serif KR","AppleMyungjo",serif;color:var(--ink);word-break:keep-all;margin-bottom:8px}
+.nb-blank{display:inline-block;padding:0 5px;margin:0 1px;border-radius:5px;background:var(--hi);color:var(--acc);font-weight:700;letter-spacing:1px}
+.nb-blank.peek{background:#fff3cd;color:#856404}
+.nb-input{width:100%;min-height:46px;padding:8px 10px;border:none;border-bottom:2px solid var(--acc);border-radius:6px 6px 0 0;background:rgba(39,64,139,.04);font:20px/1.7 "Noto Serif KR","AppleMyungjo",serif;color:var(--ink);outline:none;white-space:pre-wrap;word-break:keep-all}
+.nb-input:empty:before{content:attr(data-placeholder);color:var(--mute);pointer-events:none}
+.nb-input.bad-now{border-bottom-color:var(--bad);background:rgba(192,57,43,.05)}
+.nb-ruled{height:38px;border-bottom:1px dashed var(--line);opacity:.55}
+.nb-pill{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-top:10px;font-size:13px;color:var(--mute)}
+.nb-warn{color:var(--bad);font-weight:600}
 </style>
 </head>
 <body class="pin-locked">
@@ -169,6 +190,10 @@ body.pin-locked > *:not(#pin-gate){display:none!important}
 <main id="trainer-view" class="view-hidden" data-tone="0">
 <button type="button" class="back-btn" id="back-home">← 과목·단원 목록으로</button>
 <h1>세무사 세법·상법·재정학 암기 타자</h1>
+<div class="vtabs" role="tablist">
+  <button type="button" id="tabCard" class="on">카드 모드</button>
+  <button type="button" id="tabNb">공책 따라쓰기 모드</button>
+</div>
 <div class="bar">
   <select id="law"></select>
   <select id="chap"></select>
@@ -189,7 +214,37 @@ body.pin-locked > *:not(#pin-gate){display:none!important}
 <div class="stat" id="stat"></div>
 <div class="meter"><i id="mt"></i></div>
 
-<div class="card">
+<div id="notebook-panel">
+  <div class="nb-bar">
+    <select id="nbDiff">
+      <option value="0">따라쓰기 (전체 보기)</option>
+      <option value="0.3">빈칸 암기 (핵심 30%)</option>
+      <option value="0.6">빈칸 심화 (핵심 60%)</option>
+    </select>
+    <button type="button" id="nbShuffle">빈칸 다시 섞기</button>
+    <button type="button" id="nbHint">힌트 보기</button>
+    <button type="button" id="nbPrev">← 이전</button>
+    <button type="button" id="nbNext">다음 →</button>
+    <button type="button" id="nbClear">공책 비우기</button>
+  </div>
+  <div class="nb-sheet" id="nbSheet">
+    <div id="nbHist"></div>
+    <div class="nb-active" id="nbActive">
+      <div class="ref-row"><div class="ref" id="nbRef"></div><span class="idx-badge" id="nbIdx"></span></div>
+      <div class="nb-prompt" id="nbPrompt"></div>
+      <div id="nbInp" class="nb-input" contenteditable="plaintext-only" role="textbox" aria-multiline="true" autocorrect="off" autocapitalize="off" spellcheck="false" data-placeholder="위 문장을 그대로 따라 적으세요"></div>
+      <div class="nb-pill">
+        <span><b id="nbCpm">0타/분</b> · <b id="nbAcc">정확도 100%</b> <span id="nbWarn" class="nb-warn"></span></span>
+        <span>끝까지 맞게 치면 다음 줄로 이어집니다</span>
+      </div>
+    </div>
+    <div class="nb-ruled"></div>
+    <div class="nb-ruled"></div>
+    <div class="nb-ruled"></div>
+  </div>
+</div>
+
+<div class="card" id="card-panel">
   <div class="ref-row"><div class="ref" id="ref"></div><span class="ref-pill" id="refPill" style="display:none"></span><span class="idx-badge" id="idxbadge"></span></div>
   <div id="tgt"></div>
   <div id="inp" contenteditable="plaintext-only" role="textbox" aria-multiline="true" autocorrect="off" autocapitalize="off" spellcheck="false" data-placeholder="여기에 입력"></div>
@@ -723,6 +778,166 @@ addEventListener('scroll',()=>{
 })();
 var armed=false;
 cards();refreshSelects();pick();
+
+/* ---------- 공책 따라쓰기 + 무작위 핵심 빈칸 모드 ---------- */
+(function(){
+  let nbMode=false,nbComp=false,nbT0=0,nbPeek=false,nbMaskSet=new Set();
+  const nbInp=$('nbInp'),nbHist=$('nbHist'),nbSheet=$('nbSheet');
+  if(!nbInp)return;
+
+  Object.defineProperty(nbInp,'value',{
+    get(){return (nbInp.textContent||'').replace(/\u00a0/g,' ').replace(/\r?\n/g,'');},
+    set(v){nbInp.textContent=v||'';}
+  });
+  nbInp.addEventListener('keydown',e=>{if(e.key==='Enter')e.preventDefault();});
+
+  const KEY_RE=/(\d+|과세|납세|세법|세액|세율|소득|법인|부가가치|공제|면제|영세율|신고|결정|경정|징수|가산세|대통령령|기획재정부령|이사회|주주총회|주주|주식|자본금|배당|감사|합병|분할|해산|청산|공공재|외부성|조세|탄력성|효율|형평|파레토|한계|초과부담|지방세|국세|의제|간주|추정|무효|취소|연대|책임|손해|권리|의무|요건|절차|범위|기준|원칙|예외|특례|재화|용역|사업자|공급)/;
+  const STOP=new Set(['및','등','그','이','수','것','때','경우','관하여','따라','대한','위한','다음과','같다','있다','없다','한다','된다','이다']);
+  const PART_RE=/^(.*?)(은|는|이|가|을|를|의|에|에서|에게|으로|로|와|과|랑|이랑|란|이란|이나|거나|이며|며|하고|하는|한다|된다|이다|하여|하여야)$/;
+
+  function buildTokens(text){
+    const parts=text.split(/(\s+)/);
+    const tokens=[];
+    parts.forEach((p,idx)=>{
+      if(!p||/^\s+$/.test(p)){tokens.push({raw:p,space:true});return;}
+      const m=p.match(/^([\"'(\[「『]*)(.*?)([\".',)\]」』]*)$/);
+      const lead=m?m[1]:'',core=m?m[2]:p,trail=m?m[3]:'';
+      let stem=core,part='';
+      const pm=core.match(PART_RE);
+      if(pm&&pm[1].length>=2){stem=pm[1];part=pm[2];}
+      let score=0;
+      if(stem.length>=2&&!STOP.has(stem)){
+        if(/\d/.test(stem))score+=5;
+        if(KEY_RE.test(stem))score+=4;
+        if(stem.length>=3)score+=2;
+        else score+=1;
+      }
+      tokens.push({raw:p,space:false,lead,stem,part,trail,score,idx});
+    });
+    return tokens;
+  }
+
+  function rollBlanks(text,ratio){
+    nbMaskSet=new Set();
+    if(!ratio||ratio<=0)return;
+    const toks=buildTokens(text).filter(t=>!t.space&&t.score>0);
+    if(!toks.length)return;
+    const scored=toks.map(t=>({idx:t.idx,w:t.score+Math.random()*2.8})).sort((a,b)=>b.w-a.w);
+    const cnt=Math.max(1,Math.min(toks.length,Math.round(toks.length*ratio)));
+    for(let i=0;i<cnt;i++)nbMaskSet.add(scored[i].idx);
+  }
+
+  function renderNbPrompt(){
+    if(!cur)return;
+    $('nbRef').textContent=$('ref').textContent;
+    $('nbIdx').textContent=$('idxbadge').textContent;
+    const toks=buildTokens(T);
+    let html='';
+    toks.forEach(t=>{
+      if(t.space){html+=esc(t.raw);return;}
+      if(nbMaskSet.has(t.idx)){
+        const txt=nbPeek?t.stem:'○'.repeat(t.stem.length);
+        html+=esc(t.lead)+`<span class="nb-blank${nbPeek?' peek':''}">${esc(txt)}</span>`+esc(t.part+t.trail);
+      }else{
+        html+=esc(t.raw);
+      }
+    });
+    $('nbPrompt').innerHTML=html;
+  }
+
+  function nbAcc(){
+    const v=nbInp.value;
+    const len=nbComp?Math.max(0,v.length-1):v.length;
+    if(!len)return 100;
+    let ok=0;
+    for(let i=0;i<len&&i<T.length;i++)if(v[i]===T[i])ok++;
+    return Math.round(100*ok/len);
+  }
+
+  function nbLive(){
+    if(!nbMode||!cur)return;
+    const a=nbAcc();
+    $('nbAcc').textContent='정확도 '+a+'%';
+    if(nbT0){
+      const min=(Date.now()-nbT0)/60000;
+      if(min>0)$('nbCpm').textContent=Math.round(nbInp.value.normalize('NFD').length/min)+'타/분';
+    }else{$('nbCpm').textContent='0타/분';}
+    const v=nbInp.value;
+    let hasBad=false;
+    const lim=nbComp?Math.max(0,v.length-1):v.length;
+    for(let i=0;i<lim;i++){if(v[i]!==T[i]){hasBad=true;break;}}
+    nbInp.classList.toggle('bad-now',hasBad);
+    $('nbWarn').textContent=hasBad?'· 오타 확인':'';
+  }
+
+  function syncNb(reroll){
+    if(!cur)return;
+    const ratio=parseFloat($('nbDiff').value||'0');
+    if(reroll)rollBlanks(T,ratio);
+    nbPeek=false;$('nbHint').textContent='힌트 보기';
+    nbInp.value='';nbT0=0;nbComp=false;
+    renderNbPrompt();nbLive();
+    if(nbMode)setTimeout(()=>{try{nbInp.focus({preventScroll:true});}catch(e){}},30);
+  }
+
+  function commitNb(){
+    const sec=nbT0?((Date.now()-nbT0)/1000):1;
+    const a=100;
+    const cpm=Math.round(T.normalize('NFD').length/Math.max(0.05,sec/60));
+    const g=S.prog[cur.id]||{box:1,best:0,n:0,acc:0};
+    const cap=$('mode').value==='blank'?5:3;
+    g.box=g.box<cap?g.box+1:g.box;
+    g.best=Math.max(g.best,cpm);g.acc=a;g.n++;
+    g.next=Date.now()+INTV[g.box-1]*DAY;
+    S.prog[cur.id]=g;save();stats();
+
+    const row=document.createElement('div');
+    row.className='nb-pair';
+    row.innerHTML=`<div class="nb-p-done">${esc($('nbRef').textContent?('['+$('nbRef').textContent+'] '):'')}${esc(T)}</div><div class="nb-u-done"><span>${esc(nbInp.value.trim())}</span><span class="nb-u-meta">${a}% · ${cpm}타/분</span></div>`;
+    nbHist.appendChild(row);
+    nbSheet.scrollTop=nbSheet.scrollHeight;
+    pick(1);
+    syncNb(true);
+  }
+
+  function onNbInput(){
+    if(!nbMode||!cur)return;
+    if(!nbT0)nbT0=Date.now();
+    nbLive();
+    if(!nbComp&&nbInp.value.trim()===T)commitNb();
+  }
+
+  nbInp.addEventListener('input',onNbInput);
+  nbInp.addEventListener('compositionstart',()=>{nbComp=true;});
+  nbInp.addEventListener('compositionend',()=>{nbComp=false;onNbInput();});
+  nbInp.addEventListener('paste',e=>e.preventDefault());
+  setInterval(nbLive,400);
+
+  function setMode(isNb){
+    nbMode=isNb;
+    $('tabCard').classList.toggle('on',!isNb);
+    $('tabNb').classList.toggle('on',isNb);
+    $('card-panel').style.display=isNb?'none':'block';
+    $('notebook-panel').style.display=isNb?'block':'none';
+    if(isNb)syncNb(true);
+    else if(cur)start(cur);
+  }
+
+  $('tabCard').addEventListener('click',()=>setMode(false));
+  $('tabNb').addEventListener('click',()=>setMode(true));
+  $('nbDiff').addEventListener('change',()=>syncNb(true));
+  $('nbShuffle').addEventListener('click',()=>{rollBlanks(T,parseFloat($('nbDiff').value||'0'));renderNbPrompt();nbInp.focus();});
+  $('nbHint').addEventListener('click',()=>{nbPeek=!nbPeek;$('nbHint').textContent=nbPeek?'힌트 숨기기':'힌트 보기';renderNbPrompt();nbInp.focus();});
+  $('nbPrev').addEventListener('click',()=>{pick(-1);syncNb(true);});
+  $('nbNext').addEventListener('click',()=>{pick(1);syncNb(true);});
+  $('nbClear').addEventListener('click',()=>{nbHist.innerHTML='';nbInp.focus();});
+
+  const origStart=start;
+  start=function(item){
+    origStart(item);
+    if(nbMode)syncNb(true);
+  };
+})();
 </script>
 </body>
 </html>
