@@ -27,7 +27,10 @@ button.p{background:var(--acc);color:#fff;border-color:var(--acc)}
 #tgt .bad{color:var(--bad);text-decoration:underline}
 #tgt .cur{color:var(--acc)}
 #tgt .at{background:var(--hi);border-radius:3px}
-#inp{width:100%;margin-top:10px;border:1px solid var(--line);border-radius:8px;background:var(--bg);padding:10px;font-size:20px;resize:none}
+#inp{width:100%;min-height:96px;margin-top:10px;border:1px solid var(--line);border-radius:8px;background:var(--bg);padding:10px;font-size:20px;line-height:1.5;outline:none;white-space:pre-wrap;word-break:keep-all}
+#inp:focus{border-color:var(--acc);box-shadow:0 0 0 2px rgba(39,64,139,.15)}
+#inp:empty:before{content:attr(data-placeholder);color:var(--mute);pointer-events:none}
+#inp[contenteditable="false"]{opacity:.7;pointer-events:none}
 .live{display:flex;gap:16px;color:var(--mute);font-size:14px;margin-top:8px}
 #res{margin-top:12px;padding:12px;border-radius:8px;background:var(--hi);display:none}
 #res .row{display:flex;gap:8px;margin-top:10px}
@@ -189,7 +192,7 @@ body.pin-locked > *:not(#pin-gate){display:none!important}
 <div class="card">
   <div class="ref-row"><div class="ref" id="ref"></div><span class="ref-pill" id="refPill" style="display:none"></span><span class="idx-badge" id="idxbadge"></span></div>
   <div id="tgt"></div>
-  <textarea id="inp" name="typing_practice_arena" rows="3" autocomplete="one-time-code" autocorrect="off" autocapitalize="off" spellcheck="false" aria-autocomplete="none" data-lpignore="true" data-form-type="other" placeholder="여기에 입력"></textarea>
+  <div id="inp" contenteditable="plaintext-only" role="textbox" aria-multiline="true" autocorrect="off" autocapitalize="off" spellcheck="false" data-placeholder="여기에 입력"></div>
   <div class="live"><span id="lcpm">0타/분</span><span id="lacc">정확도 100%</span><span id="lbox"></span></div>
   <div id="res"></div>
   <div class="ref-box" id="refBox"></div>
@@ -506,6 +509,18 @@ function finish(){
   $('next').onclick=()=>pick($('order').value==='seq'?1:undefined);
   stats();
 }
+(function(){
+  const el=$('inp');
+  Object.defineProperty(el,'value',{
+    get(){return (el.textContent||'').replace(/\u00a0/g,' ').replace(/\r?\n/g,'');},
+    set(v){el.textContent=v||'';}
+  });
+  Object.defineProperty(el,'disabled',{
+    get(){return el.getAttribute('contenteditable')==='false';},
+    set(v){el.setAttribute('contenteditable',v?'false':'plaintext-only');}
+  });
+  el.addEventListener('keydown',e=>{if(e.key==='Enter')e.preventDefault();});
+})();
 $('inp').addEventListener('input',onInput);
 $('inp').addEventListener('compositionstart',()=>{comp=true});
 $('inp').addEventListener('compositionend',()=>{comp=false;onInput()});
